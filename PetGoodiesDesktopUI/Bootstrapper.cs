@@ -1,9 +1,11 @@
 ﻿using Caliburn.Micro;
+using PetGoodiesDesktopUI.Helpers;
 using PetGoodiesDesktopUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace PetGoodiesDesktopUI
 {
@@ -14,6 +16,11 @@ namespace PetGoodiesDesktopUI
         public Bootstrapper()
         {
             Initialize();
+
+            ConventionManager.AddElementConvention<PasswordBox>(
+                PasswordBoxHelper.BoundPasswordProperty,
+                "Password",
+                "PasswordChanged");
         }
 
         protected override void Configure()
