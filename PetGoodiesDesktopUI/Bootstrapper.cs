@@ -30,7 +30,8 @@ namespace PetGoodiesDesktopUI
 
             _container
                 .Singleton<IWindowManager, WindowManager>() // Creates a single instance of WindowManager for the lifetime of the container
-                .Singleton<IEventAggregator, EventAggregator>(); // Creates a single instance of EventAggregator for the lifetime of the container
+                .Singleton<IEventAggregator, EventAggregator>() // Creates a single instance of EventAggregator for the lifetime of the container
+                .Singleton<IAPIHelper, APIHelper>(); 
 
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)

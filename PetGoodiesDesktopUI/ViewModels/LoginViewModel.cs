@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using PetGoodiesDesktopUI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,14 @@ namespace PetGoodiesDesktopUI.ViewModels
 {
     public class LoginViewModel : Screen
     {
+        private readonly IAPIHelper _apiHelper;
         private string _username;
         private string _password;
+
+        public LoginViewModel(IAPIHelper apiHelper)
+        {
+            _apiHelper = apiHelper;
+        }
 
         public string UserName
         {
@@ -48,9 +55,16 @@ namespace PetGoodiesDesktopUI.ViewModels
             }
         }
 
-        public void Login()
+        public async void Login()
         {
-            Console.WriteLine();
+            try
+            {
+                var result = await _apiHelper.Authenticate(UserName, Password);
+            }
+            catch (Exception ex)
+            {
+                // TODO Add exception handling later
+            }
         }
     }
 }
